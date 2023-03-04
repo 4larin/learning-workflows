@@ -24,7 +24,7 @@ jobs:
 
       - name: custom node script
         id: custom-node-script
-        uses: ./.github/custom_node_script/
+        uses: .github/custom_node_script/
   
   verify_domain_name_script:
     runs-on: ubuntu-latest

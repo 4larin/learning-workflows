@@ -2,6 +2,13 @@
 const core = require('@actions/core')
 const fs = require('fs')
 const YAML = require('yaml')
+const github = require('@actions/github');
+const { context } = require('@actions/github')
+const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
+const octokit = github.getOctokit(GITHUB_TOKEN);
+
+
+const { pull_request } = context.payload;
 const privateFilePath = '../../configuration/private'
 const publicFilePath = '../../configuration/public'
 const utf8Encoding = 'utf-8'
@@ -10,6 +17,13 @@ let errorCount = 0
 
 const runAction = async () => {
   try {
+
+    await octokit.rest.issues.createComment({
+      ...context.repo,
+      issue_number: pull_request.number,
+      body: 'Thank you for submitting a pull request! We will try to review this as soon as we can.'
+    });
+
     core.info('verify-domain-name-uniqueness-action: starting')
 
     findDomainDuplicates(await getDomains())
@@ -52,7 +66,7 @@ const getDomains = async () => {
 
 const findDomainDuplicates = async (domains) => {
   let domainArray = domains.map((item) => {
-    if (item.publicFacing){
+    if (item.publicFacing) {
       core.warning(`The domain "${item.domainName}" in file "${item.fileName}" is public facing`)
     }
     return item.domainName
@@ -73,5 +87,7 @@ const findDomainDuplicates = async (domains) => {
   }
 
 }
+
+
 
 runAction()

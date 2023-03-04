@@ -1,0 +1,44 @@
+name: 'Push action'
+on:
+  push:
+    branches: ['main', 'master']
+
+env:
+  node-version: 12
+
+jobs:
+  custom_node_script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+
+      - name: Setup Node ${{ env.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.node-version }}
+
+      - name: NPM Compile
+        run: npm ci
+        working-directory: .github/custom_node_script/
+
+      - name: custom node script
+        id: custom-node-script
+        uses: ./.github/custom_node_script/
+  
+  verify_domain_name_script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+
+      - name: Setup Node ${{ env.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.node-version }}
+
+      - name: Validate domain name 
+        id: verify-domain-names
+        uses: ./.github/verify-domain-name-uniqueness-action/
+
+

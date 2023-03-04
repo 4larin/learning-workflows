@@ -1,0 +1,43 @@
+name: pull-request
+
+on:
+  pull_request:
+    branches: [ master ]
+concurrency:
+  group: atlas-github-membership || atlas-github-organization || atlas-github-repository || atlas-github-teams
+  cancel-in-progress: false
+env: 
+  node-version: 12
+jobs:
+  file-change-test:
+    runs-on: self-hosted
+    outputs:
+      organization: ${{ steps.filter.outputs.organization }}
+      groups: ${{ steps.filter.outputs.groups }}
+      repositories: ${{ steps.filter.outputs.repositories }}
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+      - name: Setup Node ${{ env.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.node-version }}
+
+      - name: NPM Compile
+        run: npm ci
+        working-directory: .github/verify-membership-action/
+
+      - name: Validate membership yaml configuration
+        id: verify-membership-action
+        uses: ./.github/verify-membership-action/
+    
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            organization:
+             - 'Configuration/Organization/**'
+            groups:
+             - 'Configuration/Groups/**'
+            repositories:
+             - 'Configuration/Repositories/**'

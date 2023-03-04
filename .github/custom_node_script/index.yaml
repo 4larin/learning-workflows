@@ -1,0 +1,5 @@
+name: 'Custom node script'
+description: 'Testing custom node action'
+runs: 
+  using: node12
+  main: index.js

@@ -20,4 +20,4 @@ jobs:
       run: |
         cd .github/verify-domain-name-uniqueness-action
         npm install
-        node linter.js
+        node index.js

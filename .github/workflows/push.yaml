@@ -10,19 +10,9 @@ jobs:
   custom_node_script:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout'
+      - name: 'Checkout code'
         uses: actions/checkout@v2
-
-      - name: Setup Node ${{ env.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ env.node-version }}
-
-      - name: NPM Compile
-        run: npm ci
-        working-directory: ./.github/custom_node_script/
-
-      - name: custom node script
+      - name: Run custom node action
         id: custom-node-script
         uses: ./.github/custom_node_script/
   

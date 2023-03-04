@@ -20,11 +20,11 @@ jobs:
 
       - name: NPM Compile
         run: npm ci
-        working-directory: .github/custom_node_script/
+        working-directory: ./.github/custom_node_script/
 
       - name: custom node script
         id: custom-node-script
-        uses: .github/custom_node_script/
+        uses: ./.github/custom_node_script/
   
   verify_domain_name_script:
     runs-on: ubuntu-latest

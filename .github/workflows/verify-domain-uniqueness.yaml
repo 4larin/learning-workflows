@@ -18,6 +18,6 @@ jobs:
       run: npm install
     - name: Run linter
       run: |
-        cd ./path/to/linter
+        cd .github/verify-domain-name-uniqueness-action
         npm install
         node linter.js

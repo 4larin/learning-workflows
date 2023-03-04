@@ -1,4 +1,4 @@
-name: OpensearchLinter
+name: Custom Node Script
 on:
   push:
     branches: [ main ]

@@ -43,6 +43,8 @@ const getDomains = async () => {
   // Get files in private folder
   for await (const privateFile of privateFiles) {
     const privateFIleStream = await fs.promises.readFile(`${privateFilePath}/${privateFile}`, utf8Encoding)
+    console.log('privateFIleStream')
+    console.log(privateFIleStream)
     for (const enviroments of YAML.parse(privateFIleStream).environments) {
       domainNames.push({ fileName: `${privateFilePath}/${privateFile}`, domainName: `${YAML.parse(privateFIleStream).name}_${enviroments?.name}`, publicFacing: enviroments?.public_facing })
     }

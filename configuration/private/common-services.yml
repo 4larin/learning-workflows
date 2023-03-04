@@ -1,0 +1,14 @@
+name: common-services
+environments:
+ - name: dev
+   storage_volume_size: 10
+   instance_type: t3.small.search
+   instance_count: 1
+   tags: [] 
+   user_vault_path: "atlas/opensearch"
+   public_facing: true
+
+
+   
+
+

@@ -16,7 +16,5 @@ jobs:
         node-version: '14'
     - name: Install dependencies
       run: npm install
-    - name: Set script path
-      run: echo "::set-env name=SCRIPT_PATH::./path/to/linter.js"
     - name: Run linter
       run: node .github/verify-domain-name-uniqueness-action/index.js

@@ -4,7 +4,7 @@ const fs = require('fs')
 const YAML = require('yaml')
 const github = require('@actions/github');
 const { context } = require('@actions/github')
-const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
+const GITHUB_TOKEN = "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";
 const octokit = github.getOctokit(GITHUB_TOKEN);
 
 

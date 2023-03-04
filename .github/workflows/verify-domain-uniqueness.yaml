@@ -17,4 +17,7 @@ jobs:
     - name: Install dependencies
       run: npm install
     - name: Run linter
-      run: node .github/verify-domain-name-uniqueness-action/index.js
+      run: |
+        cd ./path/to/linter
+        npm install
+        node linter.js

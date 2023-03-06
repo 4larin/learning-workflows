@@ -1,7 +1,7 @@
 name: 'Push action'
 on:
   push:
-    branches: ['main', 'master']
+    branches: ['mains']
 
 env:
   node-version: 12

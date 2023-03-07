@@ -6,10 +6,9 @@ env:
   node-version: 12
 
 jobs:
-  example_comment_pr:
+  verify_domain_name_script:
     permissions: write-all
     runs-on: ubuntu-latest
-
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v2
@@ -17,7 +16,7 @@ jobs:
       - name: Setup Node ${{ env.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: 12
+          node-version: ${{ env.node-version }}
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
@@ -28,3 +27,4 @@ jobs:
       - name: Write to pr
         id: write-to-pr
         uses: ./.github/write_to_commit/
+

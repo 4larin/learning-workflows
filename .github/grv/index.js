@@ -1,7 +1,12 @@
 'use strict'
-const core = require('@actions/core');
+const core = require('@actions/core')
+const fs = require('fs')
+const YAML = require('yaml')
 const github = require('@actions/github');
 const { context } = require('@actions/github')
+
+
+
 const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
 const octokit = github.getOctokit(GITHUB_TOKEN);
  

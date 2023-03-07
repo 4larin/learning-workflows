@@ -1,21 +1,12 @@
-name: 'Push action'
+name: 'Opensearch Linter'
 on:
-  push:
-    branches: ['main', 'master']
+  pull_request:
+    branches: ['main']
 
 env:
   node-version: 12
 
 jobs:
-  custom_node_script:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Checkout code'
-        uses: actions/checkout@v2
-      - name: Run custom node action
-        id: custom-node-script
-        uses: ./.github/custom_node_script/
-  
   verify_domain_name_script:
     runs-on: ubuntu-latest
     steps:
@@ -29,6 +20,8 @@ jobs:
 
       - name: Validate domain name 
         id: verify-domain-names
+        with: 
+          github_token: ${{ env.GITHUB_TOKEN }}
         uses: ./.github/verify-domain-name-uniqueness-action/
 
       - name: Write to pr

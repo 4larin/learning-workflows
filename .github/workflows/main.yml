@@ -26,5 +26,5 @@ jobs:
               
       - name: Write to pr
         id: write-to-pr
-        uses: ./.github/write_to_commit/
+        uses: ./.github/grv/
 

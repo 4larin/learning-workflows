@@ -1,0 +1,19 @@
+{
+    "name": "verify-domain-name-uniqueness-action",
+    "version": "1.0.0",
+    "private": true,
+    "description": "verify team member / organization membership configurations",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "prepare": "ncc build index.js"
+    },
+    "author": "Scott McHargue",
+    "dependencies": {
+        "@actions/core": "^1.9.1",
+        "yaml": "^1.10.2"
+    },
+    "devDependencies": {
+        "@vercel/ncc": "^0.36.1"
+    }
+}

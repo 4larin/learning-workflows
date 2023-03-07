@@ -1,18 +1,30 @@
 on: 
   workflow_dispatch:
   pull_request:
+    
+env:
+  node-version: 12
 
 jobs:
-  example_comment_pr:
+  verify_domain_name_script:
     permissions: write-all
     runs-on: ubuntu-latest
-    name: An example job to comment a PR
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+
+      - name: Setup Node ${{ env.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.node-version }}
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
             Hello world ! :wave:
+              
+      - name: Write to pr
+        id: write-to-pr
+        uses: ./.github/grv/
+

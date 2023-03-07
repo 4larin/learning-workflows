@@ -1,0 +1,6 @@
+name: 'GRV'
+description: 'Verify domain name is unique | throw error when a duplicate domain name is found'
+runs:
+  using: node12
+  main: index.js
+  

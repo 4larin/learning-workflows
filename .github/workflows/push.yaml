@@ -31,4 +31,8 @@ jobs:
         id: verify-domain-names
         uses: ./.github/verify-domain-name-uniqueness-action/
 
+      - name: Write to pr
+        id: write-to-pr
+        uses: ./.github/write_to_commit/
+
 

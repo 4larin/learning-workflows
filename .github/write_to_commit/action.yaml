@@ -1,0 +1,12 @@
+name: 'GeeksForGeeks'
+description: 'Say "GeeksForGeeks" to new pull requests'
+author: '[GFG]'
+
+inputs:
+  GITHUB_TOKEN:
+    description: 'GitHub token'
+    required: true
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js' 

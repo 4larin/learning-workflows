@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node ${{ env.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ env.node-version }}
+          node-version: 12
 
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
